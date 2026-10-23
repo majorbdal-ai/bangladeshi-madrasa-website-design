@@ -13,6 +13,7 @@
                 <ul class="nav-links">
                     <li><a href="index.php">হোম</a></li>
                     <li><a href="administration.php">প্রশাসন</a></li>
+                    <li><a href="teachers.php">শিক্ষক ও কর্মচারী</a></li>
                 </ul>
             </div>
         </nav>
