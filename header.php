@@ -14,6 +14,9 @@
                     <li><a href="index.php">হোম</a></li>
                     <li><a href="administration.php">প্রশাসন</a></li>
                     <li><a href="teachers.php">শিক্ষক ও কর্মচারী</a></li>
+                    <li><a href="notices.php">নোটিশ</a></li>
+                    <li><a href="gallery.php">গ্যালারি</a></li>
+                    <li><a href="contact.php">যোগাযোগ</a></li>
                 </ul>
             </div>
         </nav>
