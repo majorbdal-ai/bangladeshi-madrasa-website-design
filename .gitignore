@@ -1,0 +1,9 @@
+# ডেটাবেজ ক্রেডেনশিয়াল — কখনো কমিট করবেন না
+includes/config.php
+
+# OS
+.DS_Store
+Thumbs.db
+
+# আপলোড করা ছবি (ঐচ্ছিক)
+# assets/images/uploads/

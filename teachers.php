@@ -1,28 +1,33 @@
-<?php include('header.php'); ?>
+<?php
+require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/includes/helpers.php';
+$page_title = 'শিক্ষক ও কর্মচারী — ' . get_setting('site_name', 'ধনুয়া কাচারী পাড়া আহাম্মদীয়া দাখিল মাদ্রাসা');
+include('header.php');
+$teachers = [];
+try {
+    $teachers = db()->query('SELECT name, designation, subject, mobile FROM teachers WHERE is_active = 1 ORDER BY sort_order, id')->fetchAll();
+} catch (Throwable $e) {}
+?>
 <main class="container">
     <h2>শিক্ষক ও কর্মচারী</h2>
-    <div class="content">
-        <p>আমাদের মাদরাসার সুযোগ্য শিক্ষক ও কর্মচারীদের তালিকা নিচে দেওয়া হলো (DEMO):</p>
-        <table border="1" cellpadding="10" style="width:100%; border-collapse: collapse; margin-top: 20px;">
-            <tr>
-                <th>নাম</th>
-                <th>পদবি</th>
-                <th>বিষয়</th>
-                <th>মোবাইল</th>
-            </tr>
-            <tr>
-                <td>জনাব মো: আব্দুর রহমান</td>
-                <td>অধ্যক্ষ</td>
-                <td>-</td>
-                <td>017XXXXXXXX</td>
-            </tr>
-            <tr>
-                <td>জনাব মো: ইব্রাহিম</td>
-                <td>সহকারী শিক্ষক</td>
-                <td>বাংলা</td>
-                <td>017XXXXXXXX</td>
-            </tr>
+    <?php if ($teachers): ?>
+        <table class="data-table">
+            <thead>
+                <tr><th>নাম</th><th>পদবি</th><th>বিষয়</th><th>মোবাইল</th></tr>
+            </thead>
+            <tbody>
+                <?php foreach ($teachers as $t): ?>
+                <tr>
+                    <td><?php echo e($t['name']); ?></td>
+                    <td><?php echo e($t['designation']); ?></td>
+                    <td><?php echo e($t['subject'] ?: '-'); ?></td>
+                    <td><?php echo e(bn_digits($t['mobile'] ?: '-')); ?></td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
         </table>
-    </div>
+    <?php else: ?>
+        <p class="muted">শিক্ষক তালিকা শীঘ্রই আপডেট করা হবে।</p>
+    <?php endif; ?>
 </main>
 <?php include('footer.php'); ?>

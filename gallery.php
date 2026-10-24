@@ -1,10 +1,26 @@
-<?php include('header.php'); ?>
+<?php
+require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/includes/helpers.php';
+$page_title = 'গ্যালারি — ' . get_setting('site_name', 'ধনুয়া কাচারী পাড়া আহাম্মদীয়া দাখিল মাদ্রাসা');
+include('header.php');
+$photos = [];
+try {
+    $photos = db()->query('SELECT title, image_path, category FROM gallery WHERE is_published = 1 ORDER BY sort_order, id')->fetchAll();
+} catch (Throwable $e) {}
+?>
 <main class="container">
-    <h2>ছবি ও ভিডিও গ্যালারি</h2>
-    <div class="gallery-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:15px;">
-        <div class="demo-photo" style="height:150px; background:#ddd;">ছবি ১ (DEMO)</div>
-        <div class="demo-photo" style="height:150px; background:#ddd;">ছবি ২ (DEMO)</div>
-        <div class="demo-photo" style="height:150px; background:#ddd;">ছবি ৩ (DEMO)</div>
-    </div>
+    <h2>ছবি গ্যালারি</h2>
+    <?php if ($photos): ?>
+        <div class="gallery-grid">
+            <?php foreach ($photos as $p): ?>
+            <figure class="gallery-item">
+                <img src="<?php echo e($p['image_path']); ?>" alt="<?php echo e($p['title'] ?: 'মাদ্রাসার ছবি'); ?>" loading="lazy">
+                <?php if (!empty($p['title'])): ?><figcaption><?php echo e($p['title']); ?></figcaption><?php endif; ?>
+            </figure>
+            <?php endforeach; ?>
+        </div>
+    <?php else: ?>
+        <p class="muted">গ্যালারিতে এখনো কোনো ছবি যোগ করা হয়নি।</p>
+    <?php endif; ?>
 </main>
 <?php include('footer.php'); ?>

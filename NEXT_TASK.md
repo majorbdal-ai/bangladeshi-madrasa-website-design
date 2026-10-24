@@ -1,5 +1,9 @@
 # Next Task
 
-1. Install PHP and MariaDB in the environment.
-2. Create directory structure for the project.
-3. Design Database Schema.
+সাইটের মূল কাজ সম্পন্ন — ডিপ্লয়ের জন্য `DEPLOY.md` দেখুন।
+
+ভবিষ্যতের উন্নয়ন (ঐচ্ছিক):
+1. গ্যালারিতে ছবি আপলোডের UI যোগ করা (বর্তমানে FTP + phpMyAdmin)।
+2. অনলাইন ভর্তি আবেদন ফর্ম তৈরি করা (`admissions` টেবিল প্রস্তুত আছে)।
+3. ফলাফল ও মার্কশিট মডিউল।
+4. লাইব্রেরি ম্যানেজমেন্ট।
